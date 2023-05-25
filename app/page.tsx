@@ -9,7 +9,7 @@ export type MenuItem = string;
 export type Task = {
   id: number;
   description: string;
-  complete: boolean;
+  complete: 'Active' | 'Completed';
 };
 
 export default function Home() {
@@ -26,7 +26,7 @@ export default function Home() {
         tasks={tasks}
         setTasks={setTasks}
       />
-      <Task tasks={tasks} />
+      <Task tasks={tasks} setTasks={setTasks} />
     </section>
   );
 }

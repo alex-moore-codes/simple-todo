@@ -21,6 +21,7 @@ export default function AddTask({
       ...tasks,
       { id: nextId++, description: taskField, complete: 'Active' },
     ]);
+    setTaskField('');
   }
 
   return (
@@ -33,7 +34,10 @@ export default function AddTask({
       />
       <button
         onClick={handleAddTask}
-        className="rounded-[12px] bg-primary text-[14px] font-semibold leading-[17.07px] w-[109px] text-[#FFFFFF]"
+        disabled={!taskField}
+        className={`rounded-[12px] ${
+          !taskField ? 'bg-[#BDBDBD]' : 'bg-primary'
+        } text-[14px] font-semibold leading-[17.07px] w-[109px] text-[#FFFFFF]`}
       >
         Add
       </button>

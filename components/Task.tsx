@@ -14,7 +14,11 @@ export default function Task({ tasks, setTasks }: TaskProps) {
         tasks.map((task: Task) => (
           <div key={task.id} className="flex space-x-[7px]">
             <Checkbox checked={task.complete === 'Completed'} />
-            <p className={`font-medium ${task.complete && 'line-through'}`}>
+            <p
+              className={`font-medium ${
+                task.complete === 'Completed' && 'line-through'
+              }`}
+            >
               {task.description}
             </p>
           </div>
