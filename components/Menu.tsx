@@ -15,7 +15,7 @@ export default function Menu() {
   return (
     <nav className="border-b-[1px] border-[#BDBDBD] border-solid py-[18px] flex justify-center">
       {menuItems.map((item: MenuItem) => (
-        <div className="w-1/3 flex justify-evenly relative">
+        <div className="w-1/3 flex justify-evenly relative" key={item.name}>
           <button>
             <span className="text-[14px] leading-[17.07px] font-semibold">
               {item.name}
