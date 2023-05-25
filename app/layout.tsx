@@ -21,7 +21,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <h1 className="text-center text-[36px] leading-[42.26px] font-bold tracking-tighter">
           &#x23;todo
         </h1>
-        <main className={`${mont.className} w-2/5 flex flex-col items-center`}>
+        <main
+          className={`${mont.className} w-2/5 flex flex-col justify-center items-center`}
+        >
           {children}
         </main>
       </body>

@@ -1,7 +1,9 @@
+import Menu from '@/components/Menu';
+
 export default function Home() {
   return (
-    <main className="">
-      <div>Hello world!</div>
-    </main>
+    <section className="mt-[40px] w-full">
+      <Menu />
+    </section>
   );
 }
