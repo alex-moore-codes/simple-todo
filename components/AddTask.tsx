@@ -1,11 +1,40 @@
-export default function AddTask() {
+'use client';
+
+import { SetStateAction } from 'react';
+import { Task } from '@/app/page';
+
+type AddTaskProps = {
+  taskField: string;
+  setTaskField: React.Dispatch<SetStateAction<string>>;
+  tasks: Task[];
+  setTasks: React.Dispatch<SetStateAction<Task[]>>;
+};
+let nextId = 0;
+export default function AddTask({
+  taskField,
+  setTaskField,
+  tasks,
+  setTasks,
+}: AddTaskProps) {
+  function handleAddTask() {
+    setTasks([
+      ...tasks,
+      { id: nextId++, description: taskField, complete: 'Active' },
+    ]);
+  }
+
   return (
     <div className="flex justify-between space-x-[25px] mt-[18px]">
       <input
         placeholder="add details"
+        value={taskField}
+        onChange={(e) => setTaskField(e.currentTarget.value)}
         className="rounded-[12px] py-[20px] px-[12px] border-solid border-[1px] border-[#BDBDBD] w-full"
       />
-      <button className="rounded-[12px] bg-primary text-[14px] font-semibold leading-[17.07px] w-[109px] text-[#FFFFFF]">
+      <button
+        onClick={handleAddTask}
+        className="rounded-[12px] bg-primary text-[14px] font-semibold leading-[17.07px] w-[109px] text-[#FFFFFF]"
+      >
         Add
       </button>
     </div>

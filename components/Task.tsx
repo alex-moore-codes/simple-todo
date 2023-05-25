@@ -1,28 +1,24 @@
+import { SetStateAction } from 'react';
 import Checkbox from './Checkbox';
+import { Task } from '@/app/page';
 
-type Task = {
-  id: number;
-  description: string;
-  complete: boolean;
+type TaskProps = {
+  tasks: Task[];
+  setTasks: React.Dispatch<SetStateAction<Task[]>>;
 };
 
-const tasks: Task[] = [
-  { id: 1, description: 'test task 1', complete: false },
-  { id: 2, description: 'test task 2', complete: false },
-  { id: 3, description: 'test task 3', complete: true },
-];
-
-export default function Task() {
+export default function Task({ tasks, setTasks }: TaskProps) {
   return (
     <div className="mt-[32px] flex flex-col space-y-[27px]">
-      {tasks.map((task: Task) => (
-        <div key={task.id} className="flex space-x-[7px]">
-          <Checkbox checked={task.complete} />
-          <p className={`font-medium ${task.complete && 'line-through'}`}>
-            {task.description}
-          </p>
-        </div>
-      ))}
+      {tasks &&
+        tasks.map((task: Task) => (
+          <div key={task.id} className="flex space-x-[7px]">
+            <Checkbox checked={task.complete === 'Completed'} />
+            <p className={`font-medium ${task.complete && 'line-through'}`}>
+              {task.description}
+            </p>
+          </div>
+        ))}
     </div>
   );
 }
