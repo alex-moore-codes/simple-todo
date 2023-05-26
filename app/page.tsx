@@ -20,12 +20,14 @@ export default function Home() {
   return (
     <section className="mt-[40px] w-2/5">
       <Menu isActiveNav={isActiveNav} setIsActiveNav={setIsActiveNav} />
-      <AddTask
-        taskField={taskField}
-        setTaskField={setTaskField}
-        tasks={tasks}
-        setTasks={setTasks}
-      />
+      {isActiveNav !== 'Completed' && (
+        <AddTask
+          taskField={taskField}
+          setTaskField={setTaskField}
+          tasks={tasks}
+          setTasks={setTasks}
+        />
+      )}
       <Task tasks={tasks} setTasks={setTasks} isActiveNav={isActiveNav} />
     </section>
   );
