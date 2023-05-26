@@ -9,10 +9,7 @@ export type MenuItem = string;
 export type Task = {
   id: number;
   description: string;
-  complete: 'Active' | 'Completed';
-};
-export type ActiveNav = {
-  isActiveNav: 'All' | 'Active' | 'Completed';
+  complete: boolean;
 };
 
 export default function Home() {
@@ -24,13 +21,12 @@ export default function Home() {
     <section className="mt-[40px] w-2/5">
       <Menu isActiveNav={isActiveNav} setIsActiveNav={setIsActiveNav} />
       <AddTask
-        isActiveNav={isActiveNav}
         taskField={taskField}
         setTaskField={setTaskField}
         tasks={tasks}
         setTasks={setTasks}
       />
-      <Task tasks={tasks} setTasks={setTasks} />
+      <Task tasks={tasks} setTasks={setTasks} isActiveNav={isActiveNav} />
     </section>
   );
 }

@@ -1,11 +1,11 @@
 import { SetStateAction } from 'react';
 import Checkbox from './Checkbox';
-import { Task, ActiveNav } from '@/app/page';
+import { MenuItem, Task } from '@/app/page';
 
 type TaskProps = {
   tasks: Task[];
   setTasks: React.Dispatch<SetStateAction<Task[]>>;
-  isActiveNav: ActiveNav;
+  isActiveNav: MenuItem;
 };
 
 export default function Task({ tasks, setTasks, isActiveNav }: TaskProps) {
