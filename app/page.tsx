@@ -11,6 +11,9 @@ export type Task = {
   description: string;
   complete: 'Active' | 'Completed';
 };
+export type ActiveNav = {
+  isActiveNav: 'All' | 'Active' | 'Completed';
+};
 
 export default function Home() {
   const [isActiveNav, setIsActiveNav] = useState<MenuItem>('All');
@@ -21,6 +24,7 @@ export default function Home() {
     <section className="mt-[40px] w-2/5">
       <Menu isActiveNav={isActiveNav} setIsActiveNav={setIsActiveNav} />
       <AddTask
+        isActiveNav={isActiveNav}
         taskField={taskField}
         setTaskField={setTaskField}
         tasks={tasks}
