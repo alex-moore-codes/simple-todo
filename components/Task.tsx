@@ -34,30 +34,51 @@ export default function Task({ tasks, setTasks, isActiveNav }: TaskProps) {
     setTasks(newTasks);
   }
 
+  function filterMethod(): boolean[] {
+    switch (isActiveNav) {
+      case 'All': {
+        return [true, false];
+      }
+      case 'Active': {
+        return [false];
+      }
+      case 'Completed': {
+        return [true];
+      }
+
+      default:
+        throw new Error('Did not find filter method.');
+    }
+  }
+
   return (
     <div className="relative min-h-fit">
       <div className="mt-[32px] flex flex-col space-y-[27px]">
         {tasks &&
-          tasks.map((task: Task) => (
-            <div key={task.id} className="flex justify-between">
-              <div className="flex space-x-[7px]">
-                <Checkbox
-                  onCheck={() => handleCheck(task)}
-                  checked={task.complete}
-                />
-                <p className={`font-medium ${task.complete && 'line-through'}`}>
-                  {task.description}
-                </p>
-              </div>
-              {isActiveNav === 'Completed' && (
-                <div className="w-1/6 flex justify-end mr-3">
-                  <button onClick={() => handleDelete(task)}>
-                    <DeleteOutlinedIcon className="h-6 w-6 text-[#BDBDBD]" />
-                  </button>
+          tasks
+            .filter((task: Task) => filterMethod().includes(task.complete))
+            .map((task: Task) => (
+              <div key={task.id} className="flex justify-between">
+                <div className="flex space-x-[7px]">
+                  <Checkbox
+                    onCheck={() => handleCheck(task)}
+                    checked={task.complete}
+                  />
+                  <p
+                    className={`font-medium ${task.complete && 'line-through'}`}
+                  >
+                    {task.description}
+                  </p>
                 </div>
-              )}
-            </div>
-          ))}
+                {isActiveNav === 'Completed' && (
+                  <div className="w-1/6 flex justify-end mr-3">
+                    <button onClick={() => handleDelete(task)}>
+                      <DeleteOutlinedIcon className="h-6 w-6 text-[#BDBDBD]" />
+                    </button>
+                  </div>
+                )}
+              </div>
+            ))}
       </div>
       {isActiveNav === 'Completed' && (
         <button
