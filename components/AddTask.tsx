@@ -10,7 +10,7 @@ type AddTaskProps = {
   setTasks: React.Dispatch<SetStateAction<Task[]>>;
 };
 
-export let nextId = 0;
+// export let nextId = 0;
 
 export default function AddTask({
   taskField,
@@ -19,9 +19,13 @@ export default function AddTask({
   setTasks,
 }: AddTaskProps) {
   function handleAddTask() {
+    function nextId(): number {
+      return (Math.max(...tasks.map((task: Task) => task.id)) + 1) | 0;
+    }
+
     setTasks([
       ...tasks,
-      { id: nextId++, description: taskField, complete: false },
+      { id: nextId(), description: taskField, complete: false },
     ]);
     setTaskField('');
   }
