@@ -24,6 +24,16 @@ export default function Task({ tasks, setTasks, isActiveNav }: TaskProps) {
     setTasks(newTasks);
   }
 
+  function handleDelete(task: Task) {
+    const newTasks: Task[] = tasks.filter((item: Task) => item.id !== task.id);
+    setTasks(newTasks);
+  }
+
+  function handleDeleteAll() {
+    const newTasks: Task[] = tasks.filter((item: Task) => !item.complete);
+    setTasks(newTasks);
+  }
+
   return (
     <div className="relative">
       <div className="mt-[32px] flex flex-col space-y-[27px]">
@@ -41,16 +51,21 @@ export default function Task({ tasks, setTasks, isActiveNav }: TaskProps) {
               </div>
               {isActiveNav === 'Completed' && (
                 <div className="w-1/6 flex justify-end mr-3">
-                  <DeleteOutlinedIcon className="h-6 w-6 text-[#BDBDBD]" />
+                  <button onClick={() => handleDelete(task)}>
+                    <DeleteOutlinedIcon className="h-6 w-6 text-[#BDBDBD]" />
+                  </button>
                 </div>
               )}
             </div>
           ))}
       </div>
       {isActiveNav === 'Completed' && (
-        <button className="bg-[#EB5757] absolute mt-[35px] right-0 text-[12px] leading-[14.63] rounded-[4px] flex justify-center text-white w-[124px] h-[40px] space-x-[5.5px] items-center">
+        <button
+          onClick={handleDeleteAll}
+          className="font-semibold bg-[#EB5757] mt-[35px] right-0 text-[12px] leading-[14.63] rounded-[4px] flex justify-center text-white w-[124px] h-[40px] space-x-[5.5px] items-center"
+        >
           <DeleteOutlinedIcon className=" w-4 h-4" />
-          <span className=" font-semibold">delete all</span>
+          delete all
         </button>
       )}
     </div>
