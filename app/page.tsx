@@ -15,11 +15,13 @@ export type Task = {
 export default function Home() {
   const [isActiveNav, setIsActiveNav] = useState<MenuItem>('All');
   const [taskField, setTaskField] = useState<string>('');
-  const [tasks, setTasks] = useState<Task[]>(() => {
-    const savedTasks = localStorage.getItem('tasks');
-    const initialTasks = savedTasks && JSON.parse(savedTasks);
-    return initialTasks || [];
-  });
+  const [tasks, setTasks] = useState<Task[]>([]);
+
+  useEffect(() => {
+    const localTasks: string = localStorage.getItem('tasks') || '';
+    const parsedTasks: Task[] = JSON.parse(localTasks);
+    setTasks(parsedTasks);
+  }, []);
 
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
