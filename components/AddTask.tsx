@@ -38,6 +38,7 @@ export default function AddTask({
         onChange={(e) => setTaskField(e.currentTarget.value)}
         className="rounded-[12px] py-[20px] px-[12px] border-solid border-[1px] border-[#BDBDBD] w-full"
       />
+
       <button
         onClick={handleAddTask}
         disabled={!taskField}

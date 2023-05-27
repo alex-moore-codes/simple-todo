@@ -35,7 +35,7 @@ export default function Task({ tasks, setTasks, isActiveNav }: TaskProps) {
   }
 
   return (
-    <div className="relative">
+    <div className="relative min-h-fit">
       <div className="mt-[32px] flex flex-col space-y-[27px]">
         {tasks &&
           tasks.map((task: Task) => (
@@ -62,10 +62,10 @@ export default function Task({ tasks, setTasks, isActiveNav }: TaskProps) {
       {isActiveNav === 'Completed' && (
         <button
           onClick={handleDeleteAll}
-          className="font-semibold bg-[#EB5757] mt-[35px] right-0 text-[12px] leading-[14.63] rounded-[4px] flex justify-center text-white w-[124px] h-[40px] space-x-[5.5px] items-center"
+          className="font-semibold bg-[#EB5757] absolute mt-[35px] right-0 text-[12px] leading-[14.63px] rounded-[4px] flex justify-center text-white w-[124px] h-[40px] space-x-[5.5px] items-center"
         >
           <DeleteOutlinedIcon className=" w-4 h-4" />
-          delete all
+          <span>delete all</span>
         </button>
       )}
     </div>
