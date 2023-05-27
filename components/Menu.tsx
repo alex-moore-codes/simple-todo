@@ -2,6 +2,7 @@
 
 import { MenuItem } from '@/app/page';
 import { SetStateAction } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 type MenuProps = {
   isActiveNav: string;
@@ -21,7 +22,14 @@ export default function Menu({ isActiveNav, setIsActiveNav }: MenuProps) {
             </span>
           </button>
           {item === isActiveNav && (
-            <div className="bg-primary absolute -bottom-[19px] h-[4px] w-1/3 rounded-t-[4px]" />
+            <AnimatePresence>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="bg-primary absolute -bottom-[19px] h-[4px] w-1/3 rounded-t-[4px]"
+              />
+            </AnimatePresence>
           )}
         </div>
       ))}
