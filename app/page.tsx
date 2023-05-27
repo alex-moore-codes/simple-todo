@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Menu from '@/components/Menu';
 import AddTask from '@/components/AddTask';
 import Task from '@/components/Task';
+import { LocalLaundryService } from '@mui/icons-material';
 
 export type MenuItem = string;
 export type Task = {
@@ -19,8 +20,13 @@ export default function Home() {
 
   useEffect(() => {
     const localTasks: string = localStorage.getItem('tasks') || '';
-    const parsedTasks: Task[] = JSON.parse(localTasks);
-    setTasks(parsedTasks);
+    function parseTasks(localTasks: string): Task[] {
+      if (localTasks === '') {
+        return [];
+      }
+      return JSON.parse(localTasks);
+    }
+    setTasks(parseTasks(localTasks));
   }, []);
 
   useEffect(() => {
